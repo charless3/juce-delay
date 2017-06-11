@@ -17,7 +17,9 @@ JuceDelayAudioProcessor::JuceDelayAudioProcessor()
                         .withOutput ("Output", AudioChannelSet::stereo(), true)
                     #endif
                     ),
-    m_delay(10e-3)
+    m_delay(10e-3),
+    m_feedback(0.0),
+    m_mix(0.5)
 #endif
 {
 }

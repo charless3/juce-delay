@@ -29,7 +29,11 @@ private:
   JuceDelayAudioProcessor& m_processor;
 
   Slider m_delayKnob;
+  Slider m_feedbackKnob;
+  Slider m_mixKnob;
   Label m_delayLabel;
+  Label m_feedbackLabel;
+  Label m_mixLabel;
   /// \todo Other parameters: feedback, mix, maybe rate/depth for LFO modulation, any others?
   ///       Any others? Might want to make this a stereo delay with separate delay times for each channel.
   ///       I've seen some effects pedals that break the second delay into note divisions (eigth, quarter, etc).
