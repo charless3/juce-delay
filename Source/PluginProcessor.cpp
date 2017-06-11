@@ -2,19 +2,22 @@
  *
  */
 
+#include <iostream>
+
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
 JuceDelayAudioProcessor::JuceDelayAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
   : AudioProcessor (BusesProperties()
-                    #if ! JucePlugin_IsMidiEffect
+                    #if ! JucePlugin_IsMidiEffect /// \todo Probably don't need these checks.
                       #if ! JucePlugin_IsSynth
                         .withInput  ("Input",  AudioChannelSet::stereo(), true)
                       #endif
                         .withOutput ("Output", AudioChannelSet::stereo(), true)
                     #endif
-                    )
+                    ),
+    m_delay(10e-3)
 #endif
 {
 }
@@ -78,7 +81,7 @@ void JuceDelayAudioProcessor::changeProgramName (int index, const String& newNam
 
 void JuceDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-  // Use this method as the place to do any pre-playback initialisation that you need..
+  // Use this method as the place to do any pre-playback initialisation that you need.
 }
 
 void JuceDelayAudioProcessor::releaseResources()
@@ -117,7 +120,7 @@ bool JuceDelayAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts
 
 void JuceDelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
-  const int totalNumInputChannels  = getTotalNumInputChannels();
+  const int totalNumInputChannels = getTotalNumInputChannels();
   const int totalNumOutputChannels = getTotalNumOutputChannels();
 
   // In case we have more outputs than inputs, this code clears any output
@@ -137,6 +140,8 @@ void JuceDelayAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
     float* channelData = buffer.getWritePointer (channel);
 
     // ..do something to the data...
+    //channelData = 
+    //int delaySamples = 
   }
 }
 

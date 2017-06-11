@@ -10,10 +10,18 @@
 */
 class JuceDelayAudioProcessor  : public AudioProcessor
 {
+
 public:
+
   JuceDelayAudioProcessor();
   ~JuceDelayAudioProcessor();
 
+  /**
+   * Pre-playback initialization of the delay processor.
+   *
+   * \param[in] double  Audio sample rate.
+   * \param[in] double  Number of audio samples per processing block.
+   */
   void prepareToPlay (double sampleRate, int samplesPerBlock) override;
   void releaseResources() override;
 
@@ -41,6 +49,11 @@ public:
   void getStateInformation (MemoryBlock& destData) override;
   void setStateInformation (const void* data, int sizeInBytes) override;
 
+  void setDelay(float delay) { m_delay = delay; }
+
 private:
+
+  float m_delay; /// \todo Making this public temporarily.
+
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (JuceDelayAudioProcessor)
 };

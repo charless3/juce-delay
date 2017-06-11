@@ -10,19 +10,30 @@
 /**
  *
  */
-class JuceDelayAudioProcessorEditor : public AudioProcessorEditor
+class JuceDelayAudioProcessorEditor : public AudioProcessorEditor,
+                                      public Slider::Listener
 {
+
 public:
+
   JuceDelayAudioProcessorEditor (JuceDelayAudioProcessor&);
   ~JuceDelayAudioProcessorEditor();
+
+  void sliderValueChanged(Slider* slider);
 
   void paint (Graphics&) override;
   void resized() override;
 
 private:
-  // This reference is provided as a quick way for your editor to access the
-  // processor object that created it.
-  JuceDelayAudioProcessor& processor;
+
+  JuceDelayAudioProcessor& m_processor;
+
+  Slider m_delayKnob;
+  Label m_delayLabel;
+  /// \todo Other parameters: feedback, mix, maybe rate/depth for LFO modulation, any others?
+  ///       Any others? Might want to make this a stereo delay with separate delay times for each channel.
+  ///       I've seen some effects pedals that break the second delay into note divisions (eigth, quarter, etc).
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (JuceDelayAudioProcessorEditor)
+
 };

@@ -7,10 +7,11 @@
               buildAAX="0" buildStandalone="1" enableIAA="0" pluginName="juce-delay"
               pluginDesc="Digital delay using the JUCE framework." pluginManufacturer="yourcompany"
               pluginManufacturerCode="Manu" pluginCode="Nm1h" pluginChannelConfigs=""
-              pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
+              pluginIsSynth="0" pluginWantsMidiIn="1" pluginProducesMidiOut="1"
               pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="JUCEDelayAU"
               pluginRTASCategory="" aaxIdentifier="com.yourcompany.JUCEDelay"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.1">
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.1"
+              defines="">
   <MAINGROUP id="te09YE" name="juce-delay">
     <GROUP id="{0DF21AAE-A1F5-1717-A6B4-99B14484EF92}" name="Source">
       <FILE id="ajP3DJ" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -23,7 +24,8 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" cppLanguageStandard="-std=c++14">
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" cppLanguageStandard="-std=c++14"
+                extraCompilerFlags="-Wall">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="juce-delay"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="juce-delay"/>
