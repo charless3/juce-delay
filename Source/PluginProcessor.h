@@ -4,10 +4,13 @@
 
 #pragma once
 
+#include <iostream>
+
 #include "../JuceLibraryCode/JuceHeader.h"
 
 /**
-*/
+ *
+ */
 class JuceDelayAudioProcessor  : public AudioProcessor
 {
 
@@ -49,15 +52,13 @@ public:
   void getStateInformation (MemoryBlock& destData) override;
   void setStateInformation (const void* data, int sizeInBytes) override;
 
-  void setDelay(float delay) { m_delay = delay; }
-  void setFeedback(float feedback) { m_feedback = feedback; }
-  void setMix(float mix) { m_mix = mix; }
+  enum Parameters { Delay, Feedback, Mix };
 
 private:
 
-  float m_delay;
-  float m_feedback;
-  float m_mix;
+  AudioParameterFloat m_delay;
+  AudioParameterFloat m_feedback;
+  AudioParameterFloat m_mix;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (JuceDelayAudioProcessor)
 };

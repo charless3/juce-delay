@@ -1,12 +1,16 @@
 /**
- *
+ * PluginEditor.cpp
+ * \brief 
+ * \author Chris Harless (chris.harless3@gmail.com)
  */
+
+#include <iostream>
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
 JuceDelayAudioProcessorEditor::JuceDelayAudioProcessorEditor (JuceDelayAudioProcessor& p)
-  : AudioProcessorEditor (&p),
+  : AudioProcessorEditor (p),
     m_processor (p),
     m_delayKnob ("Delay Knob"),
     m_feedbackKnob ("Feedback Knob"),
@@ -15,7 +19,7 @@ JuceDelayAudioProcessorEditor::JuceDelayAudioProcessorEditor (JuceDelayAudioProc
     m_feedbackLabel(),
     m_mixLabel()
 {
-  // Set window size.
+  // Set window attributes.
   setSize (400, 300);
   setResizable (true, true); /// \todo This isn't working.
 
@@ -64,14 +68,18 @@ JuceDelayAudioProcessorEditor::~JuceDelayAudioProcessorEditor()
 
 void JuceDelayAudioProcessorEditor::sliderValueChanged (Slider* slider)
 {
-  // if (slider == &m_delayKnob) {
-  //   m_processor.setDelay (m_delayKnob.getValue()); /// \todo Might need to use setValueNotifyingHost instead.
-  // }
+  if (slider == &m_delayKnob) {
+    m_processor.setParameterNotifyingHost(JuceDelayAudioProcessor::Parameters::Delay, static_cast<float>(m_delayKnob.getValue()));
+  } else if (slider == &m_feedbackKnob) {
+    m_processor.setParameterNotifyingHost(JuceDelayAudioProcessor::Parameters::Feedback, static_cast<float>(m_feedbackKnob.getValue()));
+  } else if (slider == &m_mixKnob) {
+    m_processor.setParameterNotifyingHost(JuceDelayAudioProcessor::Parameters::Mix, static_cast<float>(m_mixKnob.getValue()));
+  }
 }
 
 void JuceDelayAudioProcessorEditor::paint (Graphics& g)
 {
-  // (Our component is opaque, so we must completely fill the background with a solid colour)
+  // Our component is opaque, so we must completely fill the background with a solid colour.
   g.fillAll (getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
 
   g.setColour (Colours::white);

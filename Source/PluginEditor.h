@@ -1,5 +1,7 @@
 /**
- *
+ * PluginEditor.h
+ * \brief 
+ * \author Chris Harless (chris.harless3@gmail.com)
  */
 
 #pragma once
@@ -19,7 +21,7 @@ public:
   JuceDelayAudioProcessorEditor (JuceDelayAudioProcessor&);
   ~JuceDelayAudioProcessorEditor();
 
-  void sliderValueChanged(Slider* slider);
+  void sliderValueChanged (Slider* slider);
 
   void paint (Graphics&) override;
   void resized() override;
